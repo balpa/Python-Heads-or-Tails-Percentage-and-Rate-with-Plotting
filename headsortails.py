@@ -10,58 +10,51 @@
 # ----------------------------------------------------------------------------
 #
 
-
 from datetime import time
-
 import matplotlib.pyplot as plt
-import numpy
 import random
 import time
 
 t0 = time.process_time()
 
-arr = ['yazi','tura']
+arr = ["heads", "tails"]
 count = int(input("How many times you wanna flip?: "))
-saved, yazi, tura = [], [], []
+saved, heads, tails = [], [], []
 
 for x in range(count):
     tot = random.choice(arr)
     saved.append(tot)
 
 for y in range(len(saved)):
-    if saved[y] == 'yazi':
-        yazi.append(saved[y])
-    elif saved[y] == 'tura':
-        tura.append(saved[y])
+    if saved[y] == "heads":
+        heads.append(saved[y])
+    elif saved[y] == "tails":
+        tails.append(saved[y])
     else:
         pass
 
-savedlen, yazilen, turalen = len(saved), len(yazi), len(tura)
-percyazi = yazilen*100/savedlen
-perctura = turalen*100/savedlen
+savedlen, headslen, tailslen = len(saved), len(heads), len(tails)
+percheads = headslen * 100 / savedlen
+perctails = tailslen * 100 / savedlen
 
-#print(saved)
-print(f"{savedlen} kere atıldı")
-print("Yazı gelenlerin sayısı: ",yazilen)
-print("Tura gelenlerin sayısı: ",turalen)
-print("Yazı gelenlerın oranı: "+str(percyazi)+"%")
-print("Tura gelenlerın oranı: "+str(perctura)+"%")
+print(f"{savedlen} times flipped")
+print("Heads count: ", headslen)
+print("Tails count: ", tailslen)
+print("Heads percentage: " + str(percheads) + "%")
+print("Tails percentage: " + str(perctails) + "%")
 
-names = ['YAZI ', 'TURA']
-values = [percyazi, perctura]
+names = ["HEADS ", "TAILS"]
+values = [percheads, perctails]
 plt.figure(figsize=(4, 4))
 bar = plt.bar(names, values)
-plt.title(f"{savedlen} kere atıldı")
+plt.title(f"{savedlen} times flipped")
 plt.ylabel("PERCENTAGE")
 
 for bar in bar:
     yval = round(bar.get_height(), 2)
-    plt.text(bar.get_x() + .25, yval - 25, yval, fontsize=15)
+    plt.text(bar.get_x() + 0.25, yval - 25, yval, fontsize=15)
 
-t1 = time.process_time()-t0
+t1 = time.process_time() - t0  # time elapsed during process
 print(f"{t1} seconds passed during execution.")
 
 plt.show()
-
-
-
